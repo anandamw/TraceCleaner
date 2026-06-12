@@ -168,12 +168,14 @@ function App() {
               <div className="text-center">
                 <div className="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center mx-auto mb-4 border border-zinc-700 shadow-inner">
                   <Heart className="w-8 h-8 text-pink-500" />
+                </div>
                 <h2 className="text-xl font-bold text-white mb-2">Support Developer</h2>
                 <p className="text-zinc-400 text-sm mb-6">
                   If Optim helped you reclaim disk space and remove stubborn apps, consider buying me a coffee! ☕
                 </p>
 
-                  </div>
+                <div className="bg-white p-2 rounded-xl inline-block mx-auto mb-4 shadow-lg flex items-center justify-center">
+                  <img src="/qris_donate.jpeg" alt="QRIS Donation" className="w-48 h-auto object-contain rounded-lg" />
                 </div>
 
                 <p className="text-xs text-zinc-500 font-mono tracking-widest uppercase">
