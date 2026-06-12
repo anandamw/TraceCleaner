@@ -1,7 +1,8 @@
 # 🛡️ Optim
 
-![Optim Dashboard](public/Dashboard.png)
-
+<p align="center">
+  <img src="public/Logo-Optim.png" alt="Optim Logo" width="250">
+</p>
 Optim is an advanced, military-grade PC Optimizer Suite and Privacy Protector. Built with **Tauri v2** and **Rust**, it offers unparalleled system performance tuning, deep cache cleaning, and forensic-level file destruction with a beautiful, modern **React** frontend.
 
 ---
@@ -61,13 +62,19 @@ Always ensure you know what a process or service does before terminating it!
 ## 📸 Screenshots
 
 ### Scanner Dashboard
-![Dashboard](public/Dashboard.png)
+<p align="center">
+  <img src="public/Dashboard.png" alt="Dashboard">
+</p>
 
 ### Open Ports Analyzer
-![Open Ports](public/Open_Ports.png)
+<p align="center">
+  <img src="public/Open_Ports.png" alt="Open Ports">
+</p>
 
 ### Windows Services Manager
-![Services Manager](public/services.png)
+<p align="center">
+  <img src="public/services.png" alt="Services Manager">
+</p>
 
 ---
 
@@ -75,7 +82,9 @@ Always ensure you know what a process or service does before terminating it!
 
 If Optim helped you reclaim disk space and remove stubborn apps, consider buying me a coffee by scanning the QRIS below:
 
-<img src="public/qris_donate.jpeg" alt="QRIS Donation" width="300">
+<p align="center">
+  <img src="public/qris_donate.jpeg" alt="QRIS Donation" width="300">
+</p>
 
 ---
 *Built with ❤️ for speed, security, and absolute privacy.*
