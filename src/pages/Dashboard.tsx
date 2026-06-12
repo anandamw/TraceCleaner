@@ -45,6 +45,31 @@ const categorizeTrace = (path: string): string => {
   return "Other Traces";
 };
 
+const getInitials = (name: string): string => {
+  if (!name) return "?";
+  const cleanName = name.replace(/^[^a-zA-Z]+/, "");
+  const words = cleanName.split(/[\s_-]+/).filter(w => w.length > 0);
+  if (words.length === 0) return name.substring(0, 2).toUpperCase();
+  if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
+  return (words[0][0] + words[1][0]).toUpperCase();
+};
+
+const getColor = (name: string): string => {
+  if (!name) return "bg-zinc-700 text-zinc-300";
+  const colors = [
+    "bg-red-500", "bg-orange-500", "bg-green-500", 
+    "bg-emerald-500", "bg-teal-500", "bg-cyan-500", 
+    "bg-sky-500", "bg-blue-500", "bg-indigo-500", 
+    "bg-violet-500", "bg-purple-500", "bg-fuchsia-500", 
+    "bg-pink-500", "bg-rose-500"
+  ];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return `${colors[Math.abs(hash) % colors.length]} text-white`;
+};
+
 export function Dashboard() {
   const [apps, setApps] = useState<Application[]>([]);
   const [scanning, setScanning] = useState(false);
@@ -387,7 +412,14 @@ export function Dashboard() {
               {apps.map((app, idx) => (
                 <React.Fragment key={idx}>
                   <tr className="hover:bg-zinc-800/50 transition-colors group">
-                    <td className="p-4 text-zinc-300 font-medium group-hover:text-white transition-colors">{app.name}</td>
+                    <td className="p-4 text-zinc-300 font-medium group-hover:text-white transition-colors">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${getColor(app.name)}`}>
+                          {getInitials(app.name)}
+                        </div>
+                        <span className="truncate">{app.name}</span>
+                      </div>
+                    </td>
                     <td className="p-4 text-zinc-500 text-sm">{app.version || "-"}</td>
                     <td className="p-4 text-zinc-500 text-sm">{app.publisher || "-"}</td>
                     <td className="p-4 flex gap-2">
