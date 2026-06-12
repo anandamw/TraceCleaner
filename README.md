@@ -26,88 +26,36 @@ TraceCleaner is an advanced, military-grade PC Optimizer Suite and Privacy Prote
 
 ---
 
-## 🚀 Installation & Build Guide
+## 🚀 Download & Install
 
-### Prerequisites
+You don't need to build TraceCleaner from source! You can download the latest pre-compiled version directly from our releases page.
 
-Before building TraceCleaner, ensure your system has the following core tools installed:
+### 🪟 Windows (.exe / .msi)
+1. Go to the [Releases Page](https://github.com/anandamw/TraceCleaner/releases/latest).
+2. Download the `TraceCleaner_x64_setup.exe` or `.msi` file.
+3. Double-click the installer to install the application.
+4. *Note: To use advanced features like the Windows Services Manager and File Shredder, please run TraceCleaner as Administrator.*
 
-1. **[Node.js](https://nodejs.org/)** (v18 or higher)
-2. **[Rust](https://www.rust-lang.org/tools/install)** (`rustup`, `cargo`, `rustc`)
+### 🍎 macOS (.dmg)
+1. Go to the [Releases Page](https://github.com/anandamw/TraceCleaner/releases/latest).
+2. Download the `TraceCleaner.dmg` file.
+3. Open the `.dmg` and drag the TraceCleaner icon into your Applications folder.
 
-### 🪟 Windows Setup
+### 🐧 Linux (.AppImage / .deb)
+1. Go to the [Releases Page](https://github.com/anandamw/TraceCleaner/releases/latest).
+2. Download the `TraceCleaner.AppImage` file.
+3. Make the file executable (`chmod +x TraceCleaner.AppImage`) and double click to run it.
 
-On Windows, you need the MSVC C++ build tools.
+---
 
-1. Download and install the [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
-2. Run the installer, select **"Desktop development with C++"**, and ensure the Windows 10/11 SDK is checked.
-3. Clone the repository and install dependencies:
-   ```bash
-   git clone https://github.com/yourusername/traceCleaner.git
-   cd traceCleaner
-   npm install
-   ```
-4. Run the development server:
-   ```bash
-   npm run tauri dev
-   ```
-5. Build the final executable (`.exe` / `.msi`):
-   ```bash
-   npm run tauri build
-   ```
-
-### 🍎 macOS Setup
-
-1. Install the Xcode Command Line Tools:
-   ```bash
-   xcode-select --install
-   ```
-2. Clone the repository and install dependencies:
-   ```bash
-   git clone https://github.com/yourusername/traceCleaner.git
-   cd traceCleaner
-   npm install
-   ```
-3. Run the development server:
-   ```bash
-   npm run tauri dev
-   ```
-4. Build the final application (`.app` / `.dmg`):
-   ```bash
-   npm run tauri build
-   ```
-
-### 🐧 Linux Setup
-
-On Linux, you need various system libraries (WebKit2GTK, ALSA, etc.) required by Tauri.
-
-1. Install dependencies (Ubuntu/Debian example):
-   ```bash
-   sudo apt update
-   sudo apt install libwebkit2gtk-4.1-dev \
-       build-essential \
-       curl \
-       wget \
-       file \
-       libxdo-dev \
-       libssl-dev \
-       libayatana-appindicator3-dev \
-       librsvg2-dev
-   ```
-2. Clone the repository and install npm packages:
-   ```bash
-   git clone https://github.com/yourusername/traceCleaner.git
-   cd traceCleaner
-   npm install
-   ```
-3. Run the development server:
-   ```bash
-   npm run tauri dev
-   ```
-4. Build the final binary (`.AppImage` / `.deb`):
-   ```bash
-   npm run tauri build
-   ```
+## 👨‍💻 For Developers (Build from source)
+If you wish to contribute or build the application from source:
+```bash
+git clone https://github.com/anandamw/TraceCleaner.git
+cd TraceCleaner
+npm install
+npm run tauri dev
+```
 
 ---
 
