@@ -20,7 +20,10 @@ function App() {
       {/* Sidebar */}
       <div className="w-64 bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-col z-10 shadow-2xl">
         <div className="flex items-center mb-8 px-2 mt-4 cursor-pointer" onClick={() => setCurrentPage('dashboard')}>
-          <img src="/optim_brand_text.png" alt="Optim Logo" className="h-10 object-contain drop-shadow-lg" />
+          <img src="/Logo-Optim.png" alt="Optim Logo" className="w-9 h-9 object-contain drop-shadow-lg" />
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 ml-3 tracking-tight">
+            OPTIM
+          </h1>
         </div>
         
         <nav className="flex-1 px-4 py-4 space-y-1.5 overflow-y-auto">
