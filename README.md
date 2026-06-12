@@ -9,15 +9,17 @@ Optim is an advanced, military-grade PC Optimizer Suite and Privacy Protector. B
 
 ## ✨ Features
 
-- **📊 Comprehensive Dashboard**: Get a real-time overview of your system's health, including active storage usage, CPU telemetry, and installed applications.
-- **⚡ System Optimizer**: Safely sweep away gigabytes of orphaned system junk, temporary files, and recycle bin remnants to reclaim disk space.
-- **🕵️ Browser Privacy Cleaner**: Hunt down and obliterate tracking data (Cache, Cookies, and History SQLite databases) across Google Chrome, Microsoft Edge, and Mozilla Firefox.
-- **🚀 Startup Manager**: Significantly speed up your Windows boot time by detecting and disabling unnecessary background apps lurking in your system registry.
-- **🗄️ Space Analyzer**: Deep-scan your drive to instantly uncover the largest, space-hogging files and securely eradicate them.
-- **☠️ File Shredder**: Military-grade data destruction. Overwrites files at the physical disk-sector level using Zero-fill, DoD 5220.22-M, or Peter Gutmann algorithms, making forensic recovery impossible.
-- **⚙️ Windows Services Manager**: Detect all background services running on your OS. Instantly force-stop resource-heavy or suspicious third-party services.
-- **🌐 Network Port Analyzer**: Monitor all active TCP listening ports in real-time. Trace open ports back to their exact processes and force-kill rogue network listeners with a single click.
-- **📦 Smart Backup System**: Automatically creates backups before performing critical registry or system modifications, allowing you to restore your system state anytime.
+| Icon | Feature | Description |
+| :---: | :--- | :--- |
+| 📊 | **Comprehensive Dashboard** | Get a real-time overview of your system's health, including active storage usage, CPU telemetry, and installed applications. |
+| ⚡ | **System Optimizer** | Safely sweep away gigabytes of orphaned system junk, temporary files, and recycle bin remnants to reclaim disk space. |
+| 🕵️ | **Browser Privacy Cleaner** | Hunt down and obliterate tracking data (Cache, Cookies, and History SQLite databases) across Google Chrome, Microsoft Edge, and Mozilla Firefox. |
+| 🚀 | **Startup Manager** | Significantly speed up your Windows boot time by detecting and disabling unnecessary background apps lurking in your system registry. |
+| 🗄️ | **Space Analyzer** | Deep-scan your drive to instantly uncover the largest, space-hogging files and securely eradicate them. |
+| ☠️ | **File Shredder** | Military-grade data destruction. Overwrites files at the physical disk-sector level using Zero-fill, DoD 5220.22-M, or Peter Gutmann algorithms, making forensic recovery impossible. |
+| ⚙️ | **Windows Services Manager** | Detect all background services running on your OS. Instantly force-stop resource-heavy or suspicious third-party services. |
+| 🌐 | **Network Port Analyzer** | Monitor all active TCP listening ports in real-time. Trace open ports back to their exact processes and force-kill rogue network listeners with a single click. |
+| 📦 | **Smart Backup System** | Automatically creates backups before performing critical registry or system modifications, allowing you to restore your system state anytime. |
 
 ---
 
