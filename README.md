@@ -1,5 +1,7 @@
 # 🛡️ Optim
 
+![Optim Dashboard](screenshot.png)
+
 Optim is an advanced, military-grade PC Optimizer Suite and Privacy Protector. Built with **Tauri v2** and **Rust**, it offers unparalleled system performance tuning, deep cache cleaning, and forensic-level file destruction with a beautiful, modern **React** frontend.
 
 ---
