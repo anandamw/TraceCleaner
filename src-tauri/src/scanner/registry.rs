@@ -28,18 +28,23 @@ pub fn scan_registry() -> Result<Vec<Application>, std::io::Error> {
                             continue;
                         }
 
-                        let version: String = app_key.get_value("DisplayVersion").unwrap_or_default();
-                        let publisher: String = app_key.get_value("Publisher").unwrap_or_default();
-                        let install_location: String = app_key.get_value("InstallLocation").unwrap_or_default();
-                        let uninstall_string: String = app_key.get_value("UninstallString").unwrap_or_default();
+                        let version: Option<String> = app_key.get_value("DisplayVersion").ok();
+                        let publisher: Option<String> = app_key.get_value("Publisher").ok();
+                        let install_path: Option<String> = app_key.get_value("InstallLocation").ok();
+                        let uninstall_command: Option<String> = app_key.get_value("UninstallString").ok();
+                        let display_icon: Option<String> = app_key.get_value("DisplayIcon").ok().map(|s: String| {
+                            s.split(',').next().unwrap_or(&s).trim_matches('"').to_string()
+                        });
                         
                         let app = Application {
                             id: None,
                             name: display_name,
-                            version: if version.is_empty() { None } else { Some(version) },
-                            publisher: if publisher.is_empty() { None } else { Some(publisher) },
-                            install_path: if install_location.is_empty() { None } else { Some(install_location) },
-                            uninstall_command: if uninstall_string.is_empty() { None } else { Some(uninstall_string) },
+                            version,
+                            publisher,
+                            install_path,
+                            uninstall_command,
+                            display_icon,
+                            icon_base64: None,
                             install_date: None,
                             install_size_bytes: None,
                             is_64bit: None,
@@ -50,11 +55,57 @@ pub fn scan_registry() -> Result<Vec<Application>, std::io::Error> {
                 }
             }
         }
+        populate_app_icons(&mut apps);
         Ok(apps)
     }
 
     #[cfg(not(target_os = "windows"))]
     {
         Ok(vec![])
+    }
+}
+
+fn populate_app_icons(apps: &mut Vec<Application>) {
+    use std::process::Command;
+    use std::collections::HashMap;
+
+    let mut script = String::from("Add-Type -AssemblyName System.Drawing;\n$res = @{};\n");
+    let mut paths_to_fetch = Vec::new();
+
+    for app in apps.iter() {
+        if let Some(path) = &app.display_icon {
+            let p = path.to_lowercase();
+            if p.ends_with(".exe") || p.ends_with(".ico") {
+                if !paths_to_fetch.contains(path) {
+                    paths_to_fetch.push(path.clone());
+                }
+            }
+        }
+    }
+
+    if paths_to_fetch.is_empty() {
+        return;
+    }
+
+    for path in &paths_to_fetch {
+        let safe_path = path.replace("'", "''");
+        script.push_str(&format!(
+            "try {{ $icon = [System.Drawing.Icon]::ExtractAssociatedIcon('{}'); if ($icon) {{ $ms = New-Object System.IO.MemoryStream; $icon.ToBitmap().Save($ms, [System.Drawing.Imaging.ImageFormat]::Png); $res['{}'] = [Convert]::ToBase64String($ms.ToArray()) }} }} catch {{}}\n",
+            safe_path, safe_path
+        ));
+    }
+    script.push_str("$res | ConvertTo-Json -Compress -Depth 10");
+
+    if let Ok(output) = Command::new("powershell").args(&["-NoProfile", "-Command", &script]).output() {
+        let json_str = String::from_utf8_lossy(&output.stdout);
+        if let Ok(map) = serde_json::from_str::<HashMap<String, String>>(&json_str) {
+            for app in apps.iter_mut() {
+                if let Some(path) = &app.display_icon {
+                    if let Some(b64) = map.get(path) {
+                        app.icon_base64 = Some(b64.clone());
+                    }
+                }
+            }
+        }
     }
 }

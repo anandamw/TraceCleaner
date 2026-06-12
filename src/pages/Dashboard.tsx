@@ -414,9 +414,13 @@ export function Dashboard() {
                   <tr className="hover:bg-zinc-800/50 transition-colors group">
                     <td className="p-4 text-zinc-300 font-medium group-hover:text-white transition-colors">
                       <div className="flex items-center gap-3">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${getColor(app.name)}`}>
-                          {getInitials(app.name)}
-                        </div>
+                        {(app as any).icon_base64 ? (
+                          <img src={`data:image/png;base64,${(app as any).icon_base64}`} alt={app.name} className="w-8 h-8 object-contain drop-shadow-sm" />
+                        ) : (
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${getColor(app.name)}`}>
+                            {getInitials(app.name)}
+                          </div>
+                        )}
                         <span className="truncate">{app.name}</span>
                       </div>
                     </td>

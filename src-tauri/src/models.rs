@@ -8,6 +8,8 @@ pub struct Application {
     pub publisher: Option<String>,
     pub install_path: Option<String>,
     pub uninstall_command: Option<String>,
+    pub display_icon: Option<String>,
+    pub icon_base64: Option<String>,
     pub install_date: Option<String>,
     pub install_size_bytes: Option<u64>,
     pub is_64bit: Option<bool>,
