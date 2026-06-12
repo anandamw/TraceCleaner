@@ -398,62 +398,62 @@ export function Dashboard() {
       )}
 
       {apps.length > 0 && !showingResiduals && (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
-          <table className="w-full text-left">
-            <thead className="bg-zinc-900/50 text-zinc-500 border-b border-zinc-800 text-xs tracking-wider uppercase">
-              <tr>
-                <th className="p-4 font-medium">Name</th>
-                <th className="p-4 font-medium">Version</th>
-                <th className="p-4 font-medium">Publisher</th>
-                <th className="p-4 font-medium">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-800/50">
-              {apps.map((app, idx) => (
-                <React.Fragment key={idx}>
-                  <tr className="hover:bg-zinc-800/50 transition-colors group">
-                    <td className="p-4 text-zinc-300 font-medium group-hover:text-white transition-colors">
-                      <div className="flex items-center gap-3">
-                        {(app as any).icon_base64 ? (
-                          <img src={`data:image/png;base64,${(app as any).icon_base64}`} alt={app.name} className="w-8 h-8 object-contain drop-shadow-sm" />
-                        ) : (
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${getColor(app.name)}`}>
-                            {getInitials(app.name)}
-                          </div>
-                        )}
-                        <span className="truncate">{app.name}</span>
-                      </div>
-                    </td>
-                    <td className="p-4 text-zinc-500 text-sm">{app.version || "-"}</td>
-                    <td className="p-4 text-zinc-500 text-sm">{app.publisher || "-"}</td>
-                    <td className="p-4 flex gap-2">
-                      <button
-                        onClick={() => handleDeepScan(app, idx, false)}
-                        className="flex items-center gap-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 px-3 rounded-md border border-zinc-700 transition-colors"
-                      >
-                        <FolderSearch className="w-3.5 h-3.5" /> Deep Scan
-                      </button>
-                      <button
-                        onClick={() => handleDeepScan(app, idx, true)}
-                        className="flex items-center gap-1.5 text-xs font-medium bg-red-950/20 hover:bg-red-900/40 text-red-400 py-1.5 px-3 rounded-md border border-red-900/50 transition-colors"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" /> Uninstall
-                      </button>
-                    </td>
-                  </tr>
-                  <AnimatePresence>
-                    {expandedApp === idx && (
-                      <tr className="bg-zinc-950">
-                        <td colSpan={4} className="p-0 border-t-0">
-                          {renderTraceTree(app)}
-                        </td>
-                      </tr>
-                    )}
-                  </AnimatePresence>
-                </React.Fragment>
-              ))}
-            </tbody>
-          </table>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {apps.map((app, idx) => (
+            <React.Fragment key={idx}>
+              <div className={`flex flex-col bg-zinc-900/80 border ${expandedApp === idx ? 'border-blue-500/50 ring-1 ring-blue-500/50 shadow-lg shadow-blue-900/20' : 'border-zinc-800'} rounded-xl p-5 hover:border-zinc-700 transition-all relative overflow-hidden group`}>
+                <div className="flex items-start gap-4 mb-4">
+                  {(app as any).icon_base64 ? (
+                    <img src={`data:image/png;base64,${(app as any).icon_base64}`} alt={app.name} className="w-10 h-10 object-contain drop-shadow-md shrink-0" />
+                  ) : (
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold shrink-0 shadow-inner ${getColor(app.name)}`}>
+                      {getInitials(app.name)}
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-zinc-200 font-semibold truncate" title={app.name}>{app.name}</h3>
+                    <p className="text-xs text-zinc-500 truncate mt-0.5" title={app.publisher || "Unknown Publisher"}>
+                      {app.publisher || "Unknown Publisher"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="text-xs text-zinc-600 mb-5 font-mono">
+                  v{app.version || "1.0.0"}
+                </div>
+
+                <div className="flex gap-2 mt-auto">
+                  <button
+                    onClick={() => handleDeepScan(app, idx, false)}
+                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-2 rounded-lg border border-zinc-700 transition-colors"
+                  >
+                    <FolderSearch className="w-3.5 h-3.5" /> Scan
+                  </button>
+                  <button
+                    onClick={() => handleDeepScan(app, idx, true)}
+                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-medium bg-red-950/30 hover:bg-red-900/50 text-red-400 py-2 rounded-lg border border-red-900/30 transition-colors"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" /> Remove
+                  </button>
+                </div>
+              </div>
+
+              <AnimatePresence>
+                {expandedApp === idx && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5 overflow-hidden"
+                  >
+                    <div className="mb-4">
+                      {renderTraceTree(app)}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </React.Fragment>
+          ))}
         </motion.div>
       )}
     </div>
