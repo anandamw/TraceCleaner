@@ -1,6 +1,6 @@
 # 🛡️ Optim
 
-![Optim Dashboard](screenshot.png)
+![Optim Dashboard](public/Dashboard.png)
 
 Optim is an advanced, military-grade PC Optimizer Suite and Privacy Protector. Built with **Tauri v2** and **Rust**, it offers unparalleled system performance tuning, deep cache cleaning, and forensic-level file destruction with a beautiful, modern **React** frontend.
 
@@ -55,6 +55,27 @@ You don't need to build TraceCleaner from source! You can download the latest pr
 TraceCleaner utilizes aggressive, low-level system commands (such as Registry manipulation, hard process killing, and disk-sector overwriting). **Use at your own risk.** The authors are not responsible for any data loss, system instability, or accidental destruction of important files.
 
 Always ensure you know what a process or service does before terminating it!
+
+---
+
+## 📸 Screenshots
+
+### Scanner Dashboard
+![Dashboard](public/Dashboard.png)
+
+### Open Ports Analyzer
+![Open Ports](public/Open_Ports.png)
+
+### Windows Services Manager
+![Services Manager](public/services.png)
+
+---
+
+## ☕ Support the Developer
+
+If Optim helped you reclaim disk space and remove stubborn apps, consider buying me a coffee by scanning the QRIS below:
+
+<img src="public/qris_donate.jpeg" alt="QRIS Donation" width="300">
 
 ---
 *Built with ❤️ for speed, security, and absolute privacy.*
