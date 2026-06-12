@@ -48,17 +48,6 @@ You don't need to build TraceCleaner from source! You can download the latest pr
 
 ---
 
-## 👨‍💻 For Developers (Build from source)
-If you wish to contribute or build the application from source:
-```bash
-git clone https://github.com/anandamw/TraceCleaner.git
-cd TraceCleaner
-npm install
-npm run tauri dev
-```
-
----
-
 ## ⚠️ Disclaimer
 
 TraceCleaner utilizes aggressive, low-level system commands (such as Registry manipulation, hard process killing, and disk-sector overwriting). **Use at your own risk.** The authors are not responsible for any data loss, system instability, or accidental destruction of important files.
