@@ -15,14 +15,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Aplikasi TraceCleaner 100% menggunakan API Windows (Registry, PowerShell, Win Services)
-        # Jadi kita hanya bisa melakukan build untuk Windows
-        platform: [windows-latest]
+        platform: [macos-latest, ubuntu-22.04, windows-latest]
 
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install dependencies (Ubuntu only)
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: Setup Node
         uses: actions/setup-node@v4
