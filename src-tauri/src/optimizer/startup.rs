@@ -27,8 +27,8 @@ pub fn get_startup_apps() -> Result<Vec<StartupApp>, String> {
 
         for (path, loc) in run_paths.iter() {
             if let Ok(key) = hklm.open_subkey(path) {
-                for (name, val) in key.enum_values().filter_map(|x| x.ok()) {
-                    if let Ok(command) = val.to_string() {
+                for (name, _) in key.enum_values().filter_map(|x| x.ok()) {
+                    if let Ok(command) = key.get_value::<String, _>(&name) {
                         apps.push(StartupApp {
                             name,
                             command,
@@ -45,8 +45,8 @@ pub fn get_startup_apps() -> Result<Vec<StartupApp>, String> {
 
         for (path, loc) in run_paths_cu.iter() {
             if let Ok(key) = hkcu.open_subkey(path) {
-                for (name, val) in key.enum_values().filter_map(|x| x.ok()) {
-                    if let Ok(command) = val.to_string() {
+                for (name, _) in key.enum_values().filter_map(|x| x.ok()) {
+                    if let Ok(command) = key.get_value::<String, _>(&name) {
                         apps.push(StartupApp {
                             name,
                             command,
