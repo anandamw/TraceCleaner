@@ -19,13 +19,8 @@ function App() {
     <div className="flex h-screen bg-black text-slate-200 overflow-hidden font-sans selection:bg-zinc-800 p-6 gap-6">
       {/* Sidebar */}
       <div className="w-64 bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-col z-10 shadow-2xl">
-        <div className="p-6 flex items-center gap-3">
-          <div className="border border-zinc-800 p-2 rounded-lg text-white bg-zinc-900">
-            <Shield className="w-5 h-5" />
-          </div>
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 ml-2 tracking-tight">
-            Optim
-          </h1>
+        <div className="flex items-center mb-8 px-2 mt-4 cursor-pointer" onClick={() => setCurrentPage('dashboard')}>
+          <img src="/optim_brand_text.png" alt="Optim Logo" className="h-10 object-contain drop-shadow-lg" />
         </div>
         
         <nav className="flex-1 px-4 py-4 space-y-1.5 overflow-y-auto">
