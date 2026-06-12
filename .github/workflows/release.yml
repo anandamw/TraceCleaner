@@ -1,0 +1,53 @@
+name: Release
+
+# Robot GitHub akan bekerja saat Anda menekan tombol "Run workflow" secara manual
+# atau saat Anda melakukan push TAG versi baru (contoh: git tag v1.0.0 && git push --tags)
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        # Menjalankan 3 server sekaligus: Mac, Linux, dan Windows
+        platform: [macos-latest, ubuntu-22.04, windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies (Ubuntu only)
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install frontend dependencies
+        run: npm install
+
+      - name: Build and Release TraceCleaner
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Secara otomatis membaca versi dari package.json / tauri.conf.json
+          tagName: v__VERSION__ 
+          releaseName: 'TraceCleaner v__VERSION__'
+          releaseBody: 'Download TraceCleaner terbaru di bawah ini. Pilih `.exe` untuk Windows, `.dmg` untuk Mac, dan `.AppImage` untuk Linux.'
+          releaseDraft: true
+          prerelease: false
