@@ -35,7 +35,7 @@ export function Startup() {
       await invoke("remove_startup_app", { name: app.name, location: app.location });
       await fetchApps();
     } catch (e) {
-      alert("Failed to disable startup app. Note: You may need to run TraceCleaner as Administrator to modify HKLM keys.");
+      alert("Failed to disable startup app. Note: You may need to run Optim as Administrator to modify HKLM keys.");
     } finally {
       setProcessing(null);
     }

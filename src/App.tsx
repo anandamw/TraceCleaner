@@ -23,9 +23,9 @@ function App() {
           <div className="border border-zinc-800 p-2 rounded-lg text-white bg-zinc-900">
             <Shield className="w-5 h-5" />
           </div>
-          <span className="font-semibold text-lg tracking-tight text-white">
-            TraceCleaner
-          </span>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 ml-2 tracking-tight">
+            Optim
+          </h1>
         </div>
         
         <nav className="flex-1 px-4 py-4 space-y-1.5 overflow-y-auto">
@@ -182,7 +182,7 @@ function App() {
                 </div>
                 <h2 className="text-xl font-bold text-white mb-2">Support Developer</h2>
                 <p className="text-zinc-400 text-sm mb-6">
-                  If TraceCleaner helped you reclaim disk space and remove stubborn apps, consider buying me a coffee! ☕
+                  If Optim helped you reclaim disk space and remove stubborn apps, consider buying me a coffee! ☕
                 </p>
                 
                 <div className="bg-white p-3 rounded-2xl inline-block mx-auto mb-4 shadow-lg">

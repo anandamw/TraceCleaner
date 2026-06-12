@@ -43,7 +43,7 @@ export function Services() {
       // Refresh list after brief delay to let service state update in OS
       setTimeout(fetchServices, 1000);
     } catch (e) {
-      alert(`Failed to ${action} service. You may need to run TraceCleaner as Administrator to modify system services.\n\nError: ${e}`);
+      alert(`Failed to ${action} service. You may need to run Optim as Administrator to modify system services.\n\nError: ${e}`);
     } finally {
       setProcessing(null);
     }

@@ -39,14 +39,14 @@ jobs:
       - name: Install frontend dependencies
         run: npm install
 
-      - name: Build and Release TraceCleaner
+      - name: Build and Release Optim
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # Secara otomatis membaca versi dari package.json / tauri.conf.json
           tagName: v__VERSION__ 
-          releaseName: 'TraceCleaner v__VERSION__'
-          releaseBody: 'Download TraceCleaner terbaru di bawah ini. Pilih `.exe` untuk Windows, `.dmg` untuk Mac, dan `.AppImage` untuk Linux.'
+          releaseName: 'Optim v__VERSION__'
+          releaseBody: 'Download Optim terbaru di bawah ini. Pilih `.exe` untuk Windows, `.dmg` untuk Mac, dan `.AppImage` untuk Linux.'
           releaseDraft: true
           prerelease: false

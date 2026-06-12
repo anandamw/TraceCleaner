@@ -22,15 +22,16 @@ pub fn run() {
         .setup(|app| {
             db::init_db(app.handle()).expect("Failed to initialize database");
             
-            let show_i = MenuItemBuilder::new("Show TraceCleaner").id("show").build(app)?;
+            let show_i = MenuItemBuilder::new("Show Optim").id("show").build(app)?;
+            let hide_i = MenuItemBuilder::new("Hide").id("hide").build(app)?;
             let quit_i = MenuItemBuilder::new("Quit").id("quit").build(app)?;
-            let menu = MenuBuilder::new(app).items(&[&show_i, &quit_i]).build()?;
+            let menu = MenuBuilder::new(app).items(&[&show_i, &hide_i, &quit_i]).build()?;
 
             let _tray = TrayIconBuilder::new()
                 .menu(&menu)
                 .show_menu_on_left_click(true)
                 .icon(app.default_window_icon().unwrap().clone())
-                .tooltip("TraceCleaner")
+                .tooltip("Optim")
                 .on_menu_event(|app, event| {
                     match event.id().as_ref() {
                         "quit" => app.exit(0),
